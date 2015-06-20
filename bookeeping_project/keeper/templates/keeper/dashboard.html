@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+
+{% block title %}{{ user.username }}'s dashboard!!{% endblock %}
+
+{% block body_block %}
+	{% if user.is_authenticated %}
+	<h1>Welcome {{ user.username }} to the bookKeeper</h1>
+
+	<h2>Your current projects are: </h2>
+			{% if Projects %}
+				<ul>
+					{% for project in Projects %}
+						<li><a href="/keeper/project/{{ project.slug }}">{{ project.title }}</a></li>
+					{% endfor %}
+				</ul>
+			{% else %}
+				<strong><h4>There are no Current Projects Present</h4></strong>
+			{% endif %}
+	<h2>To add a new Project: <strong><a href="/keeper/addProject/">Click Here</a></strong></h2>
+
+
+
+	<h2>Currently avaialable contractors for hire:</h2>
+			{% if Contractors %}
+				<ul>
+					{% for contractor in Contractors %}
+						<li><a href="/keeper/contractor/{{ contractor.slug }}">{{ contractor.name }}</a></li>
+					{% endfor %}
+				</ul>
+			{% else %}
+				<strong><h4>There are no Contractors present.</h4></strong>
+			{% endif %}
+
+
+
+
+	<h4><a href="/keeper/logout/">LOGOUT</a></h4>
+
+	{% else %}
+	<h1>Wrong details</h1>
+	{% endif %}
+
+{% endblock %}
+
+
+
+
+

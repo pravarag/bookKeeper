@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}Register!!{% endblock %}
+
+{% block body_block %}
+<h1>Register as new Client with bookKeeper</h1>
+		{% if registered %}
+		<strong>Thank you for registering!!</strong>
+		<a href="/keeper/">Return to home page</a><br/>
+		{% else %}
+		<form id="user_form" method="post" action="/keeper/register/" enctype="multipart/form-data">
+		{% csrf_token %}
+
+		{{ user_form.as_p }}
+		{{ profile_form.as_p }}
+
+		<input type="submit" name="submit" value="Register" />
+		</form>
+		{% endif %}
+
+{% endblock %}

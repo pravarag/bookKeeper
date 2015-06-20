@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+
+{% block title %} Our Contractors!!{% endblock %}
+
+{%block body_block %}
+<h1>Our Contractors</h1>
+<h2>Contractor Name: {{ contractor.name }}</h2>
+<h2>Contractor Bill Rate(/hr): {{ contractor.bill_rate }}</h2>
+<h2>Contractor Url: {{ contractor.url }}</h2>
+<h2>Contractor's Current Projects: {% for i in contractor.project_set.all %}
+						{{ i }},   {% endfor %}</h2>
+
+<h4><a href="/keeper/dashboard/">Home</a></h4>
+<h4><strong>Note:</strong> We Pay all our contractors with a Pay Rate of 10 $ per hour</h4>
+{% endblock %}

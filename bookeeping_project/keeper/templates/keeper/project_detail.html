@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+
+{% block title %}{{ project.title }}{% endblock %}
+
+{% block body_block %}
+
+<h1>{{ project_details.title }}'s details </h1>
+	
+<h2>Contractor(s): {% for i in project_contractors %}
+		{{ i.name }}<br/>
+		<h2>Contractor Billing Rate(per Hour): {{ i.bill_rate }}</h2>
+		<h2>Contractor Url(s): {{ i.url }}</h2>
+{% endfor %}		
+		<h2>Project-Slug: {{ project_details.slug }}
+</h2><h2>Project-Hours: {{ project_details.contractor_hours }}<br/>
+<h2>Project Revenue: {{ projectRevenue }}</h2>
+<h2>Project Cost: {{ projectCost }}</h2>
+<h3><a href="/keeper/update_contractor/{{ project_details.slug }}/">To add a new contractor</a></h3>
+
+<h3><a href="/keeper/dashboard/">Home</a></h3>
+<h4><strong>Note:</strong> We Pay all our contractors with a Pay Rate of 10 $ per hour</h4>
+{% endblock %}

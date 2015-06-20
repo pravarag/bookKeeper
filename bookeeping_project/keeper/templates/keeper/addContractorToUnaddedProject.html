@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+
+{% block title %}Add Contractor{% endblock %}
+
+{% block body_block %}
+
+<h1>Add a Contractor from our available Contractors!!</h1>
+
+<form id="add_contractor_unadded" method="post" action="/keeper/addContractorToUnaddedProject/">
+{% csrf_token %}
+	
+	<strong><h4>Please select a contractor: {{ form.contractor }}</h4></strong>
+	<input type="submit" name='submit' value="ADD" />
+</form>
+
+<h2><a href="/keeper/dashboard/">Home</a></h2>
+
+
+{% endblock %}

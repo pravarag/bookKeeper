@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+
+{% block title %}Add a new Project{% endblock %}
+
+{% block body_block %}
+<h1>Welcome and Add a Project..</h1>
+	<form id="addProject" method="post" action="/keeper/addProject/" enctype="multipart/form-data">
+		{% csrf_token %}
+
+		{% for field in form.visible_fields %}
+			{{ field.errors }}
+			{{ field.help_text }}
+			{{ field }}<br/>
+		{% endfor %}
+		<select name="contractor_selected">
+		{% for i in contractor_list %}
+		<option value="{{ i.name }}" >{{ i.name }}</option>
+		{% endfor %}
+		</select>
+
+<br/>		<input type="submit" name="submit" value="Create" />
+
+</form>
+
+<h2><a href="/keeper/dashboard/">Home</a></h2>
+
+
+
+{% endblock %}

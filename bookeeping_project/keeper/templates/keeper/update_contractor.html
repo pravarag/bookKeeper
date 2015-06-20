@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+
+{% block title %}Update your Contractor {% endblock %}
+
+{% block body_block %}
+
+<h1>Current Project: {{ current_project.title }}</h1>
+<h1>Plz select a contractor from below:</h1>
+
+<form id="updateContractor" method="post" action="/keeper/update_contractor/{{ current_project.slug }}/" enctype="multipart/form-data">
+	{% csrf_token %}
+<select name="contractor_selected">
+		{% for i in contractors %}
+		<option value="{{ i.name }}" \>{{ i.name }}</option>
+		{% endfor %}
+		</select>
+		<input type="submit" value="ADD" name="submit"/>
+	</form>
+
+
+{% endblock %}

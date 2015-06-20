@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+
+{% block title %}Welcome to bookKeeper{% endblock %}
+
+{% block body_block %}
+
+
+<!--
+take a look at the action of the form..the action of the form is directed to the blank url which is mapped to the user_login view...so instead of using /keeper/dashboard, we user /keeper/ so that the action is sent to the user_login view and then the form is processed and is redirected to the dashboard for further action..
+
+
+-->
+
+
+
+<h1>Login to bookKeeper</h1>
+		<form id="login_form" method="post" action="/keeper/" enctype="multipart/form-data">
+			{% csrf_token %}
+			Username: <input type="text" name="username" value="" size="50" /><br/>
+			Password: <input type="password" name="password" value="" size="50"/><br/>
+			<input type="submit" value="submit" />
+		</form>
+<h3><STRONG><a href="/keeper/register/">Register as a new Client</a></STRONG></h3>
+<h3><strong><a href="/keeper/addContractor/">Register as a new Contractor</a></strong></h3>
+
+
+{% endblock %}

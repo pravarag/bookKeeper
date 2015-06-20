@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+
+{% block title %}Register!!{% endblock %}
+
+{% block body_block %}
+
+<h1>Register as a Contractor with our site!!</h1>
+
+		{% if registered %}
+			<strong><h2>Thank you for Registering with our site</h2></strong>
+			<a href="/keeper/">Return to login</a><br/>
+
+		{% else %}
+		<strong><h4>Register here!!</h4></strong><br/>
+		<form id="contractor_form" method="post" action="/keeper/addContractor/" enctype="multipart/form-data">
+			{% csrf_token %}
+
+		{{ contractor_form.as_p }}
+
+		<input type="submit" name="submit" value="Register"/>
+		</form>
+		{% endif %}
+
+{% endblock %}
