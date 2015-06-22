@@ -1,29 +1,73 @@
-{% extends 'base.html' %}
 
+<!DOCTYPE html>
 {% load staticfiles %}
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="http://getbootstrap.com/favicon.ico">
 
-{% block title %}Welcome to bookKeeper{% endblock %}
+    <title>Login To bookKeeper</title>
 
-{% block body_block %}
+    <!-- Bootstrap core CSS -->
+    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
 
+    <!-- Custom styles for this template -->
+    <link href="http://getbootstrap.com/examples/signin/signin.css" rel="stylesheet">
 
-<!--
-take a look at the action of the form..the action of the form is directed to the blank url which is mapped to the user_login view...so instead of using /keeper/dashboard, we user /keeper/ so that the action is sent to the user_login view and then the form is processed and is redirected to the dashboard for further action..
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="http://getbootstrap.com/assets/js/ie-emulation-modes-warning.js"></script>
 
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+<script>
+function validation()
+{
+	var username=document.getElementById("username").value;
+	var password=document.getElementById("password").value;
 
--->
+	if(username==="" && password==="")
+	{
+		alert("None of the field should be empty");
 
+	}
 
+}
 
-<h1>Login to bookKeeper</h1>
-		<form id="login_form" method="post" action="/keeper/" enctype="multipart/form-data">
+</script>
+
+  </head>
+
+  <body>
+
+    <div class="container">
+    <h1>Welcome to the bookKeeper</h1>	<br/>
+      <form id="login_form" method="post" action="/keeper/" enctype="multipart/form-data" >
 			{% csrf_token %}
-			Username: <input type="text" name="username" value="" size="50" /><br/>
-			Password: <input type="password" name="password" value="" size="50"/><br/>
-			<input type="submit" value="submit" />
+			<h2 class="form-signin-heading">Please sign in</h2>
+			Username: <input id="username" type="text" name="username" value="" size="50" /><br/>
+			Password: <input id="password" type="password" name="password" value="" size="50"/><br/>
+			<input type="submit" value="submit" onclick="validation()" />
 		</form>
 <h3><STRONG><a href="/keeper/register/">Register as a new Client</a></STRONG></h3>
 <h3><strong><a href="/keeper/addContractor/">Register as a new Contractor</a></strong></h3>
 
 
-{% endblock %}
+    </div> <!-- /container -->
+
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="http://getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js"></script>
+  </body>
+</html>
+
+
+

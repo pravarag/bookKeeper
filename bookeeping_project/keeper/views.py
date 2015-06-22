@@ -73,19 +73,18 @@ def addContractor(request):
 
 
 
-
+@login_required
 def dashboard(request):
 	
 	context_dict={}
-
-	
-	project_list=Project.objects.filter(client__user=request.user).order_by('-title')
+		# for i in project_all:
+		# 	print(i.client)
+	project_list=Project.objects.filter(client=request.user).order_by('-title')
 	print project_list
+	print request.user
 	contractor_list=Contractor.objects.order_by('-name')
-
 	context_dict['Projects']=project_list
 	context_dict['Contractors']=contractor_list
-
 	return render(request, 'keeper/dashboard.html', context_dict)
 
 
@@ -94,7 +93,7 @@ def addProject(request):
 	context_dict={}
 	current_user=None
 	if request.user.is_authenticated():
-		current_user=request.user.username
+		current_user=request.user
 		context_dict['user_name']=current_user
 		print current_user
 		contractor_list=Contractor.objects.all()
@@ -110,12 +109,11 @@ def addProject(request):
 				form.save(commit=True)
 				get_recent_project=Project.objects.get(title=project_title)
 				print get_recent_project
-				get_clientOfProject=get_recent_project.client
-				get_clientOfProject=current_user
+				get_recent_project.client=current_user
 				get_recent_project.save()
 				get_recent_project.contractor.add(contractor)
 				print get_recent_project.contractor.all()
-				print get_clientOfProject
+				print get_recent_project.client
 				return success(request)
 			else:
 				print form.errors
@@ -142,7 +140,7 @@ def update_contractor(request, project_slug):
 		print contractor
 		project_tobeUpdated.contractor.add(contractor)
 		print project_tobeUpdated.contractor.all()
-		return HttpResponseRedirect("/keeper/dashboard ")
+		return HttpResponseRedirect("keeper/dashboard.html")
 	else:
 		print "NONE"
 

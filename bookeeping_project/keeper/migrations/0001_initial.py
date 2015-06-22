@@ -32,6 +32,8 @@ class Migration(migrations.Migration):
                 ('title', models.CharField(max_length=128)),
                 ('slug', models.SlugField(unique=True)),
                 ('contractor_hours', models.IntegerField(default=0)),
+                ('client', models.ForeignKey(to=settings.AUTH_USER_MODEL, null=True)),
+                ('contractor', models.ManyToManyField(to='keeper.Contractor')),
             ],
             options={
             },
@@ -46,17 +48,5 @@ class Migration(migrations.Migration):
             options={
             },
             bases=(models.Model,),
-        ),
-        migrations.AddField(
-            model_name='project',
-            name='client',
-            field=models.ForeignKey(to='keeper.UserProfile', null=True),
-            preserve_default=True,
-        ),
-        migrations.AddField(
-            model_name='project',
-            name='contractor',
-            field=models.ManyToManyField(to='keeper.Contractor'),
-            preserve_default=True,
         ),
     ]

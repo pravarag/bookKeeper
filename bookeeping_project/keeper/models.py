@@ -31,7 +31,7 @@ class Contractor(models.Model):
 
 class Project(models.Model):
 	contractor=models.ManyToManyField(Contractor)
-	client=models.ForeignKey(UserProfile, null=True)
+	client=models.ForeignKey(User, null=True)
 	title=models.CharField(max_length=128)
 	slug=models.SlugField(unique=True)
 	contractor_hours=models.IntegerField(default=0)

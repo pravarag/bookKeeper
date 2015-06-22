@@ -53,6 +53,7 @@ ROOT_URLCONF = 'bookeeping_project.urls'
 
 WSGI_APPLICATION = 'bookeeping_project.wsgi.application'
 
+AUTH_PROFILE_MODULE='keeper.UserProfile'
 
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
